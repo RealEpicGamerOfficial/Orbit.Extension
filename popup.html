@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit Search</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        :root {
+            --bg-color: #1a1a1e;
+            --card-color: #2a2a2e;
+            --text-color: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --accent-color: #007aff;
+            --border-color: #3a3a3c;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            width: 400px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: var(--card-color);
+            border-bottom: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #444;
+            transition: .4s;
+            border-radius: 22px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(18px);
+        }
+
+        .content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #mini-browser-view {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        #orbit-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        #redirect-view {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        #redirect-view h3 {
+            margin: 0 0 10px 0;
+            color: var(--accent-color);
+        }
+
+        #redirect-view p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">Orbit Search</div>
+        <label class="toggle-switch" for="mode-toggle">
+            <span id="toggle-label">Mini-Browser</span>
+            <div class="switch">
+                <input type="checkbox" id="mode-toggle">
+                <span class="slider"></span>
+            </div>
+        </label>
+    </div>
+
+    <div class="content">
+        <div id="mini-browser-view">
+            <iframe id="orbit-iframe" src="https://realepicgamerofficial.github.io/Orbit.Search.Engine/"></iframe>
+        </div>
+        <div id="redirect-view">
+            <h3>Redirect Mode Active</h3>
+            <p>Google.com and new tabs will now automatically redirect to Orbit Search.</p>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
